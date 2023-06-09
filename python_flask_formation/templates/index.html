@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block base %}
+        <!-- Le contenu du site -->
+        <section id="main">
+            <nav>
+                <p>Please select your genre: </p>
+                <form >
+                    <select>
+                    {% for genre in genres %}
+                        <option value="{{ genre.id }}" {{ 'selected' if genre.id == current_genre.id }}>{{ genre.name }}</option>
+                    {% endfor %}
+                    </select>
+                    <!-- liste des genres -->
+                </form>
+                <a href="{{ url_for('auth.logout') }}">Logout</a>
+                
+            </nav>
+            <h2>{{ current_genre.name }}</h2>
+            <p>{{ current_genre.description }}</p>
+            <ul>
+            {% for artist in artists %}
+                <li>
+                    <a><h3>{{artist.name}}</h3></a>
+                    <img src="{{ artist.photo }}">
+                </li>
+            {% endfor %}
+            </ul>
+            <!-- liste des top albums du genre -->
+        </section>
+
+        <!-- Pour affichage de la liste des albums sélectionnés -->
+        <!-- Est par défaut caché par le CSS -->
+        <aside id="albums">
+            <h2>Artist albums</h2>
+            <table>
+                <!-- liste des albums du l'artiste sélectionné -->
+                <thead>
+                    <tr>
+                        <th>Cover</th>
+                        <th>Title</th>
+                        <th>Year</th>
+                        <th>Label</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+            <form><button>Ok</button></form>
+        </aside>
+        
+{% endblock %}
+
