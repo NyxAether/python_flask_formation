@@ -13,8 +13,6 @@ bp = Blueprint("auth", __name__, url_prefix="/auth")
 
 @bp.route("/login", methods=["GET"])
 def login():
-    print('chat')
-    print(request.args)
     if "username" in request.args:
         # Récupérer les identifiants du formulaire
         username = request.args["username"]
