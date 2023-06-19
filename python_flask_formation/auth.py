@@ -11,12 +11,14 @@ bp = Blueprint("auth", __name__, url_prefix="/auth")
 # Routes blueprint
 
 
-@bp.route("/login", methods=["GET", "POST"])
+@bp.route("/login", methods=["GET"])
 def login():
-    if request.method == "POST":
+    print('chat')
+    print(request.args)
+    if "username" in request.args:
         # Récupérer les identifiants du formulaire
-        username = request.form["username"]
-        password = request.form["password"]
+        username = request.args["username"]
+        password = request.args["password"]
 
         # Vérifier que l'utilisateur existe
         users = db.table("users").search(where("username") == username)
